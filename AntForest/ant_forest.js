@@ -361,8 +361,8 @@ function get_has_energy_friends()
 
     //查找可收取能量的小手
     //"#ffffff"为白色， "#1da06d"为深绿色
-    hand = images.findMultiColors(img, "#ffffff", [[0, -35, "#1da06d"], [0, 23, "#1da06d"]], {
-        region: [1073, 400 , 1, 1800]
+    hand = images.findMultiColors(img, "#ffffff", [[0, -35, "#1da06d"], [0, 25, "#1da06d"]], {
+        region: [1070, 400 , 1, 1800]
     });
 
     if(hand != null)
@@ -374,8 +374,8 @@ function get_has_energy_friends()
     {
         //查找可帮收能量的爱心
         //"##f99236"为橙色， "#fffffb"和"#fffefb"为白色
-        heart = images.findMultiColors(img, "#f99236", [[0, -10, "#fffffb"], [0, 15, "#fffefb"]], {
-            region: [1059, 400 , 1, 1800]
+        heart = images.findMultiColors(img, "#f99236", [[0, -15, "#fffffb"], [0, 10, "#fffefb"]], {
+            region: [1060, 400 , 1, 1800]
         });
 
         if(heart != null)
@@ -396,8 +396,8 @@ function arrive_bottom()
     var img = get_captureimg();
     //分别是白色、浅灰色、深灰色
     var p = null;
-    p = images.findMultiColors(img, "#F5F5F5", [[0, -40, "#FFFFFF"], [0, 20, "#999999"]], {
-        region : [600, 2000],
+    p = images.findMultiColors(img, "#F5F5F5", [[0, -60, "#FFFFFF"], [0, 20, "#9C9C9C"]], {
+        region : [520, 2100],
         threshold : 0.9
     });
     if(p != null)
