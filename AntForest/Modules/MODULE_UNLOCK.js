@@ -24,7 +24,7 @@ module.exports =
             {
                 console.error("唤醒屏幕失败，退出脚本");
                 return false;
-            }
+            }    
             else
             {
                 console.info("该设备为：" + device.brand + " " + device.model);
@@ -62,8 +62,8 @@ module.exports =
                         home();
                         return true;
                     }
-                }  
-                return true;    
+                }
+                return true;      
             }
         }
 };
