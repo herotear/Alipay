@@ -575,8 +575,8 @@ function print_configure_info()
 function main()
 {
     var unlock = require("./Modules/MODULE_UNLOCK");
-    //解锁设备
-    if(!unlock.unlock(g_password)) exit();
+    //解锁设备 第二个参数为 "pin"或"gesture"
+    if(!unlock.unlock(g_password, "gesture")) exit();
     sleep(1000);
     //获取截图权限
     get_screencapture_permission();

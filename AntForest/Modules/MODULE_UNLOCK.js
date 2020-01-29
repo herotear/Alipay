@@ -1,15 +1,19 @@
 //0-9坐标映射表
-var pas_table = [[550, 2100], [220, 1500], [550, 1500], 
-[850, 1500], [220, 1700], [550, 1700], 
-[850, 1700], [220, 1900], [550, 1900], 
-[850, 1900]];
+var pin_pas_table = [[550, 2100], [220, 1500], [550, 1500], 
+                     [850, 1500], [220, 1700], [550, 1700], 
+                     [850, 1700], [220, 1900], [550, 1900], 
+                     [850, 1900]];
+//1-9坐标映射表
+var gesture_pas_table = [[240, 1270], [540, 1270], [840, 1270],
+                         [240, 1570], [540, 1570], [840, 1570],
+                         [240, 1870], [540, 1870], [840, 1870]];
 
 const WIDTH = Math.min(device.width, device.height);
 const HEIGHT = Math.max(device.width, device.height);
 
 module.exports = 
 {
-    unlock : function(password)
+    unlock : function(password, pin_or_gesture)
         {
             let i;
             //尝试唤醒屏幕
@@ -47,7 +51,7 @@ module.exports =
                     i = 0;
                     while(is_locked() && i++ < 5)
                     {
-                        try_password(password);
+                        try_password(password, pin_or_gesture);
                         sleep(1000);
                     }
                     if(i >= 5)
@@ -79,14 +83,25 @@ function is_locked()
 }
 
 /**
- * 模拟解锁
+ *  * 模拟解锁
  * @param {*} pasword 锁屏密码
+ * @param {*} pin_or_gesture 数字还是手势解锁
  */
-function try_password(pasword)
+function try_password(pasword, pin_or_gesture)
 {
-    for(let i = 0; i < pasword.length; i++)
+    if(pin_or_gesture == "pin")
     {
-        click(pas_table[pasword[i]][0], pas_table[pasword[i]][1]);
-        sleep(500);
+        for(let i = 0; i < pasword.length; i++)
+        {
+            click(pin_pas_table[pasword[i]][0], pin_pas_table[pasword[i]][1]);
+            sleep(500);
+        }
+    }
+    else
+    {
+        let path = [];
+        for(let i = 0; i < pasword.length; i++)
+            path.push(gesture_pas_table[Number(pasword[i]-1)]);
+        gesture(250 * path.length, path);
     }
 }
