@@ -427,14 +427,16 @@ function get_has_energy_friends()
  */
 function arrive_bottom()
 {
-    var img = get_captureimg();
+    //var img = get_captureimg();
     //分别是白色、浅灰色、深灰色
     var p = null;
-    p = images.findMultiColors(img, "#F5F5F5", [[0, -60, "#FFFFFF"], [0, 20, "#9C9C9C"]], {
+    /*p = images.findMultiColors(img, "#F5F5F5", [[0, -60, "#FFFFFF"], [0, 20, "#9C9C9C"]], {
         region : [520, 2100],
         threshold : 0.9
-    });
-    if(p != null)
+    });*/
+    p = text("邀请").boundsInside(800, 1600, 1080, 2280).findOne(1000);
+
+    if(p != null && p.bounds().height() > 80)
         return true;
     else
         return false;
